@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html> -->
+<html>
+<head>
+    <title>Game of Thrones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script> 
+
+    <script>
+    $(document).ready(function(){
+        $('img').click(function(){
+            var house = $(this).attr('class');
+            var id = $(this).attr('id');
+            console.log(house)
+            //  for(var i = 1; i < 400; i++){
+            // $.get('https://anapioficeandfire.com/api/houses/' + i +'', function(res){
+            //     console.log(res)
+            // })
+            // } 
+             $.get('https://anapioficeandfire.com/api/houses/' + id + '', function(res){
+                // console.log(res)
+                
+                html_str = "";
+                html_str += "<h2>Name: </h2><h1>" + res.name + "</h1>"
+                html_str += "<h2>Words: </h2><h1>" + res.words + "</h1>";
+                
+                html_str += "<h4>Titles</h4>";       //Types Title
+                html_str += "</ul>";
+                
+                for(var i = 0; i < res.titles.length; i++) {
+                    html_str += "<li>" + res.titles[i] + "</li>";
+                }
+
+                html_str += "</ul>";
+                console.log(html_str)
+                $('.about').html(html_str)
+
+             })
+            return false;
+        })
+    });
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <img class="lannister" id="231"  src="lannister.jpg" alt="">
+        <img class="baratheon" id="16" src="baratheon.png" alt="">
+        <img class="stark" id="362" src="stark.jpg" alt="">
+        <img class="targaryen" id="378" src="targaryen.jpg" alt="">
+    </div>
+    
+    <div class="about"></div>
+    
+</body>
+  
+</html>
+
+ <!-- // for(var i = 1; i < 400; i++){
+        //     $.get('https://anapioficeandfire.com/api/houses/' + i +'', function(res){
+        //         console.log(res)
+        //     })
+        // } -->
